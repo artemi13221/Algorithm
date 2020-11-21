@@ -6,7 +6,6 @@ int main(void) {
     int num;
     int cnt = 0;
     cin >> num;
-
     for(int i = 0; i < num; i++) {
         int tmp;
         cin >> tmp;
@@ -17,6 +16,6 @@ int main(void) {
         }
     }
 
-
+    
     cout << cnt;
 }
