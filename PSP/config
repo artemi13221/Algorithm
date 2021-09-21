@@ -1,0 +1,9 @@
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+    },
+
+    Scenario 1
+Smith, M.N. 1
+Hsueh, Z. infinity
+Chen, X. 2
