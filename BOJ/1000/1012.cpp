@@ -50,7 +50,7 @@ int main(void)
             location[x][y] = 1;
         }
 
-        // bfs
+        // dfs
         int result = countCar(maxX, maxY, location);
 
         cout << result << "\n";
