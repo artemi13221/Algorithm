@@ -52,8 +52,6 @@ int main(void)
     map<string, int> um; // string -> index
     vector<string> s; // 인덱스 -> String
 
-    // 근데 인덱스 변환 과정이 굳이 필요한가 싶긴함 일단 ㅇㅋ
-
     string input;
     getline(cin, input);
 
@@ -67,8 +65,6 @@ int main(void)
 
     vector<vector<int>> graph(um.size());
 
-    // 딱 여기만 O(n)으로 더블릿을 찾을 수 있을 것 같은데
-    // 그걸 그래프에 넣으면 될듯
     for (const auto& item : s) {
         for (size_t i = 0; i < item.length(); i++) {
             string copied = item;
