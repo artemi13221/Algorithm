@@ -28,7 +28,7 @@ int main()
             v.push_back(make_pair(S * 1.0 / T, i + 1));
         }
 
-        sort(v.begin(), v.end(), cmp);
+        sort(v.begin(), v.end(), cmp); //stable_sort 사용시 한 번만 정렬해도 댐.
 
         for (size_t i = 0; i < v.size() - 1; i++) {
             cout << v[i].second << " ";
