@@ -2,49 +2,85 @@
 #include <vector>
 using namespace std;
 
-void bishop(vector<vector<int>>& v, int x, int y)
+int n, k;
+long long result;
+int cnt;
+vector<vector<int>> v;
+
+bool promising(int x, int y)
 {
-    int dia[4][2] = {
-        { 1, -1 },
+    int d[4][2] = {
         { 1, 1 },
+        { 1, -1 },
         { -1, 1 },
         { -1, -1 }
     };
-    v[y][x] = 0;
-    int i, j;
-    for (int k = 0; k < 4; k++) {
-        i = x;
-        j = y;
+    int dx = x, dy = y;
+    for (int i = 0; i < 4; i++) {
+        dx = x, dy = y;
         while (true) {
-            i += dia[k][0];
-            j += dia[k][1];
-            if (i < 0 || j < 0)
+            dx += d[i][0];
+            dy += d[i][1];
+            if (dx < 0 || dy < 0)
                 break;
-            if (i >= v[0].size() || j >= v.size())
+            if (dx >= n || dy >= n)
                 break;
-            v[j][i] = 0;
+
+            if (v[dy][dx]) {
+                return false;
+            }
         }
     }
+
+    return true;
 }
 
-void backTracking(vector<vector<int>> v, int k, int x, int y)
+void backTracking(int x, int y)
 {
+    // cout << x << " " << y << " " << n << " " << k << " " << endl;
+
+    for (int i = y; i < n; i++) {
+        for (int j = x; j < n; j++) {
+            v[i][j] = 1;
+
+            if (promising(j, i)) {
+                cnt++;
+                if (cnt == k)
+                    result++;
+                else {
+                    if (j + 1 == n) {
+                        backTracking(0, i + 1);
+                    } else {
+                        backTracking(j + 1, i); // x , y j == x, i == y
+                    }
+                }
+                // cout << cnt << "\n";
+                cnt--;
+            }
+            v[i][j] = 0;
+        }
+        x = 0;
+    }
 }
 
 int main(void)
 {
-    int n, k;
     while (cin >> n >> k) {
-        // while (true) {
-        //     vector<vector<int>> v(n, vector<int>(n, 1));
-        // }
-        vector<vector<int>> v(n, vector<int>(n, 1));
-        bishop(v, 0, 0);
-        for (auto& i : v) {
-            for (auto& j : i) {
-                cout << j << " ";
+        if (n == 0 && k == 0)
+            break;
+        v.clear();
+        for (int i = 0; i < n; i++) {
+            vector<int> tmp;
+            for (int j = 0; j < n; j++) {
+                tmp.push_back(0);
             }
-            cout << "\n";
+            v.push_back(tmp);
         }
+        result = 0;
+        cnt = 0;
+
+        // backTracking
+        backTracking(0, 0);
+        cout << result << "\n";
     }
 }
