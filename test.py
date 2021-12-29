@@ -1,29 +1,17 @@
-a = input()
-b = 0
-c = 0
+a = "1"
+b = []
+while (a):
+  try:
+    a = list(input())
+    b += a
+    if b[-1] == '.' :
+      b.append("\n")
+    elif b[-1] == ' ' and b[-2] == '.' :
+      b.append("\n")
+  except:
+    break
 
-d = input()
-e = 0
-f = 0
-
-for i in a:
-  if i == 'R':
-    b = b + 1
-  elif i == 'L':
-    b = b - 1
-  elif i == 'U':
-    c = c + 1
-  elif i == 'D':
-    c = c - 1
-
-for i in d:
-  if i == 'R':
-    e = e + 1
-  elif i == 'L':
-    e = e - 1
-  elif i == 'U':
-    f = f + 1
-  elif i == 'D':
-    f = f - 1
-
-print(b, c, e, f)
+c = ""
+for i in range(len(b)):
+  c += str(b[i]) 
+print(c)
